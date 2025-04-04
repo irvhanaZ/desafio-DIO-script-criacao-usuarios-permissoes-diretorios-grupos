@@ -1,45 +1,21 @@
-#!./bin/bash
+#!/bin/bash
 
 
 echo "Criando estrutura de usuarios, diretórios e permissões..."
 
 echo "Parte 1 - criando usuarios"
 
-useradd carlos -c "Carlos Vinicios" -s /bin/bash -m
-passwd carlos
-passwd carlos -e
+useradd carlos -c "Carlos Vinicios" -s /bin/bash -m -p $(openssl passwd -6 Senha123)
+useradd maria -c "Maria Fernandez" -s /bin/bash -m -p $(openssl passwd -6 Senha123)
+useradd joao -c "João Paulo" -s /bin/bash -m -p $(openssl passwd -6 Senha123)
 
-useradd maria -c "Maria Fernanda" -s /bin/bash -m
-passwd maria
-passwd maria -e
+useradd debora -c "Debora Rodrigues" -s /bin/bash -m -p $(openssl passwd -6 Senha123)
+useradd sebastiana -c "Sebastiana Medeiros" -s /bin/bash -m -p $(openssl passwd -6 Senha123)
+useradd roberto -c "Roberto Mendes" -s /bin/bash -m -p $(openssl passwd -6 Senha123)
 
-useradd joao -c "João Cavalcante" -s /bin/bash -m
-passwd joao
-passwd joao -e
-
-useradd debora -c "Debora Fernandez" -s /bin/bash -m
-passwd debora
-passwd debora -e
-
-useradd sebastiana -c "Sebastiana Tavares" -s /bin/bash -m
-passwd sebastiana
-passwd sebastiana -e
-
-useradd roberto -c "Roberto Bittencourt" -s /bin/bash -m
-passwd roberto
-passwd roberto -e
-
-useradd josefina -c "Josefina Mafalda" -s /bin/bash -m
-passwd josefina
-passwd josefina -e
-
-useradd amanda -c "Amanda Rodrigues" -s /bin/bash -m
-passwd amanda
-passwd amanda -e
-
-useradd rogerio -c "Rogério Henricasso" -s /bin/bash -m
-passwd rogerio
-passwd rogerio -e
+useradd josefina -c "Josefina Tavares" -s /bin/bash -m -p $(openssl passwd -6 Senha123)
+useradd amanda -c "Amanda Nunes" -s /bin/bash -m -p $(openssl passwd -6 Senha123)
+useradd rogerio -c "Rogério Barcelar" -s /bin/bash -m -p $(openssl passwd -6 Senha123)
 
 echo "Parte 2 - Criando grupos..."
 
@@ -70,11 +46,14 @@ usermod rogerio -G GRP_SEC
 
 echo "Parte 5 - Atribuindo permissões..."
 
-chmod 777 /publico
-chown :GRP_ADM /adm/
-chown :GRP_VEN /ven/
-chown :GRP_SEC /sec/
+chown root:GRP_ADM /adm/
+chown root:GRP_VEN /ven/
+chown root:GRP_SEC /sec/
 
+chmod 777 /publico/
 chmod 770 /adm/
 chmod 770 /ven/
 chmod 770 /ven/
+
+
+echo "Fim do script"
